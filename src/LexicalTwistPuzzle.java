@@ -4,10 +4,10 @@ public class LexicalTwistPuzzle {
 
     public static void main(String[] args) {
 
-        // UC1 - Display Puzzle Title
+        // UC1
         System.out.println("Lexical Twist Puzzle");
 
-        // UC2 - Accept Word Inputs
+        // UC2
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter first word: ");
@@ -16,7 +16,7 @@ public class LexicalTwistPuzzle {
         System.out.print("Enter second word: ");
         String word2 = scanner.nextLine();
 
-        // UC3 - Validate Single Word Constraint
+        // UC3
         if (word1.contains(" ")) {
             System.out.println(word1 + " is an invalid word");
             return;
@@ -27,11 +27,18 @@ public class LexicalTwistPuzzle {
             return;
         }
 
-        // UC4 - Check Reverse Relationship (case-insensitive)
+        // UC4
         String reversed = new StringBuilder(word1).reverse().toString();
 
         if (reversed.equalsIgnoreCase(word2)) {
-            System.out.println("The second word is the reverse of the first word.");
+
+            // UC5 - Transform if reverse match
+            String transformed = reversed
+                    .toLowerCase()
+                    .replaceAll("[aeiou]", "@");
+
+            System.out.println(transformed);
+
         } else {
             System.out.println("The words are not reverse of each other.");
         }

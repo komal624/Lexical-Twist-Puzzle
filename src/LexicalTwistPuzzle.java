@@ -1,4 +1,6 @@
+import java.util.LinkedHashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class LexicalTwistPuzzle {
 
@@ -41,7 +43,7 @@ public class LexicalTwistPuzzle {
 
         } else {
 
-            // UC6 - Combine & Count
+            // UC6
             String combined = (word1 + word2).toUpperCase();
 
             int vowels = 0;
@@ -56,9 +58,43 @@ public class LexicalTwistPuzzle {
                 }
             }
 
-            System.out.println("Combined Word: " + combined);
-            System.out.println("Vowel Count: " + vowels);
-            System.out.println("Consonant Count: " + consonants);
+            // UC7 - Rule-Based Output
+
+            if (vowels > consonants) {
+
+                Set<Character> uniqueVowels = new LinkedHashSet<>();
+
+                for (char ch : combined.toCharArray()) {
+                    if ("AEIOU".indexOf(ch) != -1) {
+                        uniqueVowels.add(ch);
+                    }
+                    if (uniqueVowels.size() == 2)
+                        break;
+                }
+
+                for (char ch : uniqueVowels) {
+                    System.out.print(ch);
+                }
+
+            } else if (consonants > vowels) {
+
+                Set<Character> uniqueConsonants = new LinkedHashSet<>();
+
+                for (char ch : combined.toCharArray()) {
+                    if (Character.isLetter(ch) && "AEIOU".indexOf(ch) == -1) {
+                        uniqueConsonants.add(ch);
+                    }
+                    if (uniqueConsonants.size() == 2)
+                        break;
+                }
+
+                for (char ch : uniqueConsonants) {
+                    System.out.print(ch);
+                }
+
+            } else {
+                System.out.println("Vowels and consonants are equal");
+            }
         }
     }
 }

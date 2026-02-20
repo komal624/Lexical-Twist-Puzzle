@@ -32,7 +32,7 @@ public class LexicalTwistPuzzle {
 
         if (reversed.equalsIgnoreCase(word2)) {
 
-            // UC5 - Transform if reverse match
+            // UC5
             String transformed = reversed
                     .toLowerCase()
                     .replaceAll("[aeiou]", "@");
@@ -40,7 +40,25 @@ public class LexicalTwistPuzzle {
             System.out.println(transformed);
 
         } else {
-            System.out.println("The words are not reverse of each other.");
+
+            // UC6 - Combine & Count
+            String combined = (word1 + word2).toUpperCase();
+
+            int vowels = 0;
+            int consonants = 0;
+
+            for (char ch : combined.toCharArray()) {
+
+                if ("AEIOU".indexOf(ch) != -1) {
+                    vowels++;
+                } else if (Character.isLetter(ch)) {
+                    consonants++;
+                }
+            }
+
+            System.out.println("Combined Word: " + combined);
+            System.out.println("Vowel Count: " + vowels);
+            System.out.println("Consonant Count: " + consonants);
         }
     }
 }
